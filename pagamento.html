@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagamento</title>
+<style>
+body { font-family: Arial; background: #0C1D30; color: #E3B868; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px;}
+.container { background:#14233F; padding:30px; border-radius:20px; width:100%; max-width:600px; }
+h1 { text-align:center; margin-bottom:20px; }
+.planos { display:flex; flex-direction:column; gap:15px; margin-top:15px; }
+.planos label { background:#0C1D30; padding:10px; border-radius:10px; cursor:pointer; display:block; }
+input[type="radio"] { margin-right:10px; }
+button { background:#E3B868; color:#0C1D30; font-weight:bold; padding:15px; border:none; border-radius:8px; cursor:pointer; margin-top:20px; transition:0.3s; }
+button:hover { background:#d1a755; }
+.qrcode { text-align:center; margin-top:20px; }
+.qrcode img { width:150px; height:150px; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Escolha seu Plano</h1>
+<form id="formPagamento">
+<div class="planos">
+<label><input type="radio" name="plano" value="Básico - R$49,90" required> Básico - R$49,90<br>Acesso ilimitado a videoaulas, suporte via chat e materiais adaptados</label>
+<label><input type="radio" name="plano" value="Intermediário - R$89,90" required> Intermediário - R$89,90<br>Aulas online ao vivo em grupo, suporte com profissionais, fórum de alunos + tudo do plano básico</label>
+<label><input type="radio" name="plano" value="Premium - R$149,90" required> Premium - R$149,90<br>Consultas individuais com especialistas, acesso total + tudo do plano intermediário</label>
+</div>
+<div class="qrcode">
+<p>Simulação de QR Code de pagamento</p>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=PagamentoSimulado" alt="QR Code">
+</div>
+<button type="submit">Confirmar Pagamento</button>
+</form>
+</div>
+<script>
+const form = document.getElementById("formPagamento");
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+    const plano = form.plano.value;
+    localStorage.setItem("plano", plano);
+    window.location.href = "pagamento_sucesso.html";
+});
+</script>
+</body>
+</html>

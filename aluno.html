@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro da Criança</title>
+<style>
+body { font-family: Arial; background: #0C1D30; color: #E3B868; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px;}
+.container { background:#14233F; padding:30px; border-radius:20px; width:100%; max-width:600px; }
+h1 { text-align:center; margin-bottom:20px; }
+label { display:block; margin-top:15px; font-weight:bold; }
+input, select, button, textarea { width:100%; padding:10px; margin-top:5px; border-radius:8px; border:none; }
+input, select, textarea { background:#0C1D30; color:#E3B868; }
+button { background:#E3B868; color:#0C1D30; font-weight:bold; margin-top:20px; cursor:pointer; transition:0.3s; }
+button:hover { background:#d1a755; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Cadastro da Criança</h1>
+<form id="formAluno">
+<label>Nome completo</label><input type="text" name="nome" required>
+<label>CPF</label><input type="text" name="cpf" required>
+<label>Idade</label><input type="number" name="idade" required>
+<label>Gênero</label><select name="genero" required><option value="">Selecione</option><option value="masculino">Masculino</option><option value="feminino">Feminino</option><option value="outro">Outro</option></select>
+<label>Tipo de deficiência</label><select name="tipoDeficiencia" required><option value="">Selecione</option><option value="TEA">TEA</option><option value="auditiva">Auditiva</option><option value="visual">Visual</option></select>
+<label>Grau/Nível</label><select name="grau" required><option value="">Selecione</option><option value="leve">Leve</option><option value="moderado">Moderado</option><option value="severo">Severo</option></select>
+<label>Nome do Pai</label><input type="text" name="pai" required>
+<label>Nome da Mãe</label><input type="text" name="mae" required>
+<label>Observações</label><textarea name="observacoes" rows="4" placeholder="Informações extras"></textarea>
+<button type="submit">Próximo</button>
+</form>
+</div>
+<script>
+const form = document.getElementById("formAluno");
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+    const data = {};
+    new FormData(form).forEach((v,k)=>data[k]=v);
+    localStorage.setItem("aluno", JSON.stringify(data));
+    window.location.href = "pagamento.html";
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirmação do Cadastro</title>
+<style>
+body { font-family: Arial; background: #0C1D30; color: #E3B868; padding:20px; }
+.container { background:#14233F; padding:30px; border-radius:20px; max-width:700px; margin:20px auto; }
+h1, h2 { text-align:center; }
+.info { margin-top:20px; }
+.info p { margin:5px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Confirmação Final</h1>
+<h2>Dados do Responsável</h2>
+<div id="resp" class="info"></div>
+<h2>Dados da Criança</h2>
+<div id="aluno" class="info"></div>
+<h2>Plano Escolhido</h2>
+<div id="plano" class="info"></div>
+</div>
+<script>
+function mostrarDados(id, data){
+    const container = document.getElementById(id);
+    for(const k in data){
+        const p = document.createElement("p");
+        p.textContent = k.toUpperCase() + ": " + data[k];
+        container.appendChild(p);
+    }
+}
+const resp = JSON.parse(localStorage.getItem("responsavel"));
+const aluno = JSON.parse(localStorage.getItem("aluno"));
+const plano = localStorage.getItem("plano");
+if(resp) mostrarDados("resp", resp);
+if(aluno) mostrarDados("aluno", aluno);
+if(plano) document.getElementById("plano").innerHTML = "<p>"+plano+"</p>";
+</script>
+</body>
+</html>
