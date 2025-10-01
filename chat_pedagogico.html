@@ -1,0 +1,32 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Chat Pedagógico</title>
+<link rel="stylesheet" href="style.css"></head>
+<body>
+  <header class="header">
+    <div class="logo"><div class="logo-circle">EA</div><div class="site-title">Chat Pedagógico</div></div>
+    <div class="header-actions"><a class="link" href="dashboard.html">Voltar</a></div>
+  </header>
+  <main class="container">
+    <div class="card">
+      <h3>Chat Pedagógico</h3>
+      <p class="small">Converse com um pedagogo sobre estratégias de ensino, materiais adaptados e dúvidas.</p>
+      <div id="logp" class="chat-log" style="height:220px;overflow:auto;background:rgba(255,255,255,0.02);padding:8px;border-radius:8px"></div>
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <input id="txtp" placeholder="Escreva sua dúvida pedagógica" style="flex:1;padding:8px;border-radius:8px;border:none">
+        <button class="btn" onclick="sendp()">Enviar</button>
+      </div>
+    </div>
+  </main>
+<script>
+function addMsgP(text, who){
+  const el=document.createElement('div'); el.className='msg ' + (who==='user'?'user':'bot'); el.textContent=text;
+  document.getElementById('logp').appendChild(el); document.getElementById('logp').scrollTop = document.getElementById('logp').scrollHeight;
+}
+function sendp(){ const t=document.getElementById('txtp').value.trim(); if(!t) return; addMsgP(t,'user'); document.getElementById('txtp').value='';
+ setTimeout(()=>addMsgP('Pedagogo: Obrigado pela pergunta — sugerimos iniciar com atividades de leitura simples (simulação).','bot'),900);
+}
+</script>
+</body>
+</html>

@@ -1,45 +1,33 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cadastro do Responsável</title>
-<style>
-body { font-family: Arial; background: #0C1D30; color: #E3B868; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px;}
-.container { background:#14233F; padding:30px; border-radius:20px; width:100%; max-width:600px; }
-h1 { text-align:center; margin-bottom:20px; }
-label { display:block; margin-top:15px; font-weight:bold; }
-input, button { width:100%; padding:10px; margin-top:5px; border-radius:8px; border:none; }
-input { background:#0C1D30; color:#E3B868; }
-button { background:#E3B868; color:#0C1D30; font-weight:bold; margin-top:20px; cursor:pointer; transition:0.3s; }
-button:hover { background:#d1a755; }
-</style>
-</head>
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Educa Acessível — Login</title>
+<link rel="stylesheet" href="style.css"></head>
 <body>
-<div class="container">
-<h1>Cadastro do Responsável</h1>
-<form id="formResponsavel">
-<label>Nome completo</label><input type="text" name="nome" required>
-<label>CPF</label><input type="text" name="cpf" required>
-<label>RG</label><input type="text" name="rg" required>
-<label>Telefone</label><input type="tel" name="telefone" required>
-<label>E-mail</label><input type="email" name="email" required>
-<label>Endereço</label><input type="text" name="endereco" required>
-<label>Cidade</label><input type="text" name="cidade" required>
-<label>Estado</label><input type="text" name="estado" required>
-<label>País</label><input type="text" name="pais" required>
-<button type="submit">Próximo</button>
-</form>
-</div>
-<script>
-const form = document.getElementById("formResponsavel");
-form.addEventListener("submit", function(e){
-    e.preventDefault();
-    const data = {};
-    new FormData(form).forEach((v,k)=>data[k]=v);
-    localStorage.setItem("responsavel", JSON.stringify(data));
-    window.location.href = "aluno.html";
-});
-</script>
+  <header class="header">
+    <div class="logo">
+      <div class="logo-circle">EA</div>
+      <div class="site-title">EDUCAACESSÍVEL</div>
+    </div>
+    <div class="header-actions">
+      <a class="link" href="dashboard.html">Entrar no Dashboard</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div style="max-width:520px;margin:20px auto;background:var(--card);padding:28px;border-radius:16px;">
+      <h2 style="color:var(--gold);margin-top:0">Login do Responsável</h2>
+      <p class="small">Use o e-mail cadastrado pelo responsável.</p>
+      <form onsubmit="event.preventDefault(); localStorage.setItem('userName',document.getElementById('email').value); window.location.href='dashboard.html'">
+        <input id="email" type="email" placeholder="seunome@gmail.com" style="width:100%;padding:12px;border-radius:10px;border:none;margin-top:10px">
+        <input id="senha" type="password" placeholder="Senha" style="width:100%;padding:12px;border-radius:10px;border:none;margin-top:10px">
+        <div style="display:flex;gap:10px;margin-top:14px">
+          <button class="btn" type="submit">Entrar</button>
+          <button class="btn" type="button" onclick="alert('Simulação: instruções de recuperação enviadas por e-mail')">Esqueci a senha</button>
+        </div>
+      </form>
+      <p class="small" style="margin-top:12px">Ainda não tem conta? <a class="link" href="dashboard.html">Criar (simulação)</a></p>
+    </div>
+  </main>
 </body>
 </html>

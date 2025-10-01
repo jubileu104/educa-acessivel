@@ -1,0 +1,31 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Chat Técnico</title>
+<link rel="stylesheet" href="style.css"></head>
+<body>
+  <header class="header">
+    <div class="logo"><div class="logo-circle">EA</div><div class="site-title">Suporte Técnico</div></div>
+    <div class="header-actions"><a class="link" href="dashboard.html">Voltar</a></div>
+  </header>
+  <main class="container">
+    <div class="card">
+      <h3>Chat Técnico</h3>
+      <div id="log" class="chat-log" style="height:220px;overflow:auto;background:rgba(255,255,255,0.02);padding:8px;border-radius:8px"></div>
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <input id="txt" placeholder="Digite sua mensagem" style="flex:1;padding:8px;border-radius:8px;border:none">
+        <button class="btn" onclick="send()">Enviar</button>
+      </div>
+    </div>
+  </main>
+<script>
+function addMsg(text, who){
+  const el=document.createElement('div'); el.className='msg ' + (who==='user'?'user':'bot'); el.textContent=text;
+  document.getElementById('log').appendChild(el); document.getElementById('log').scrollTop = document.getElementById('log').scrollHeight;
+}
+function send(){ const t=document.getElementById('txt').value.trim(); if(!t) return; addMsg(t,'user'); document.getElementById('txt').value='';
+ setTimeout(()=>addMsg('Suporte: Entendido. Vamos verificar (simulação).','bot'),800);
+}
+</script>
+</body>
+</html>

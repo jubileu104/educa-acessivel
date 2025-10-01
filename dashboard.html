@@ -1,0 +1,111 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Educa Acessível — Dashboard</title>
+<link rel="stylesheet" href="style.css"></head>
+<body>
+  <header class="header" style="border-bottom:1px solid rgba(255,255,255,0.03)">
+    <div class="logo">
+      <div class="logo-circle">EA</div>
+      <div class="site-title">EDUCAACESSÍVEL</div>
+    </div>
+    <div class="header-actions">
+      <div class="small" id="welcome">Olá!</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="top-row">
+      <div style="flex:1">
+        <div class="card">
+          <div>
+            <h3 id="greeting">Olá, responsável!</h3>
+            <p class="small">Bem-vindo(a) ao painel — aqui você acessa aulas, jogos e suporte.</p>
+          </div>
+          <div style="margin-top:12px"><button class="btn" onclick="location.href='consultas.html'">Agendar Consulta</button></div>
+        </div>
+      </div>
+      <div style="flex:1">
+        <div class="card" style="min-height:120px">
+          <h3>Aprender sem barreiras</h3>
+          <p class="small">Escolha a área: TEA / Auditiva / Visual / Geral</p>
+          <div style="display:flex;gap:10px;margin-top:10px">
+            <button class="btn" onclick="alert('Abrir aulas adaptadas — simulação')">Aulas adaptadas</button>
+            <button class="btn" onclick="location.href='aulas.html'">Ver cronograma</button>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1">
+        <div class="card">
+          <h3>Chat Pedagógico</h3>
+          <p class="small">Converse com um pedagogo sobre estratégias de ensino.</p>
+          <div style="margin-top:12px"><button class="btn" onclick="location.href='chat_pedagogico.html'">Abrir Chat Pedagógico</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid" style="margin-top:18px">
+      <div class="card left-col">
+        <h3>Aulas</h3>
+        <ul class="aulas-list">
+          <li><strong>1</strong><div style="flex:1">Sílabas</div></li>
+          <li><strong>2</strong><div style="flex:1">Texto</div></li>
+          <li><strong>3</strong><div style="flex:1">Gramática</div></li>
+          <li><strong>4</strong><div style="flex:1">Matemática</div></li>
+        </ul>
+        <div style="margin-top:12px"><button class="btn" onclick="location.href='aulas.html'">Ver todas as aulas</button></div>
+      </div>
+
+      <div class="card mid-col">
+        <h3>Jogos Educativos</h3>
+        <div class="games-grid">
+          <div class="game-tile" onclick="location.href='jogos.html'">A</div>
+          <div class="game-tile" onclick="location.href='jogos.html'">B</div>
+          <div class="game-tile" onclick="location.href='jogos.html'">C</div>
+          <div class="game-tile" onclick="location.href='jogos.html'">D</div>
+          <div class="game-tile" onclick="location.href='jogos.html'">E</div>
+          <div class="game-tile" onclick="location.href='jogos.html'">F</div>
+        </div>
+        <div style="margin-top:12px"><button class="btn" onclick="location.href='jogos.html'">Abrir Jogos</button></div>
+      </div>
+
+      <div class="card right-col">
+        <h3>Chat Técnico</h3>
+        <p class="small">Problemas com login, pagamento ou acesso? Use o botão amarelo.</p>
+        <div style="margin-top:12px"><button class="btn" onclick="openChat()">Abrir chat técnico</button></div>
+        <div style="margin-top:12px"><a class="link" href="consultas.html">Marcar consulta com especialista</a></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="fab" title="Abrir suporte técnico" onclick="openChat()">💬</div>
+
+  <!-- Chat janela (inicialmente escondida) -->
+  <div id="chatWindow" class="chat-window" style="display:none">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+      <strong>Suporte Técnico</strong>
+      <button onclick="closeChat()" class="btn" style="padding:6px 8px">Fechar</button>
+    </div>
+    <div id="chatlog" class="chat-log"></div>
+    <div class="chat-input">
+      <input id="chatmsg" placeholder="Escreva sua mensagem...">
+      <button class="btn" onclick="sendMsg()">Enviar</button>
+    </div>
+  </div>
+
+<script>
+const u = localStorage.getItem('userName') || '';
+if(u){ document.getElementById('greeting').textContent = 'Olá, ' + u.split('@')[0] + '!'; document.getElementById('welcome').textContent = 'Olá, ' + u.split('@')[0]; }
+function openChat(){ document.getElementById('chatWindow').style.display='flex'; }
+function closeChat(){ document.getElementById('chatWindow').style.display='none'; }
+function sendMsg(){
+  const val = document.getElementById('chatmsg').value.trim();
+  if(!val) return;
+  const log = document.getElementById('chatlog');
+  const udiv = document.createElement('div'); udiv.className='msg user'; udiv.textContent = val; log.appendChild(udiv);
+  document.getElementById('chatmsg').value=''; log.scrollTop = log.scrollHeight;
+  setTimeout(()=>{ const b = document.createElement('div'); b.className='msg bot'; b.textContent='Suporte: Recebemos sua mensagem — aguarde retorno (simulação).'; log.appendChild(b); log.scrollTop = log.scrollHeight; },800);
+}
+</script>
+</body>
+</html>
